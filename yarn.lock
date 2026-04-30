@@ -3031,9 +3031,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"code-burger-interface@workspace:.":
+"code-burger-online@workspace:.":
   version: 0.0.0-use.local
-  resolution: "code-burger-interface@workspace:."
+  resolution: "code-burger-online@workspace:."
   dependencies:
     "@emotion/react": ^11.11.1
     "@emotion/styled": ^11.11.0

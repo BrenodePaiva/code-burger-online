@@ -48,7 +48,7 @@ export function ResetPass() {
       )
       setTimeout(() => {
         history.replace('/login')
-      }, 500)
+      }, 900)
     } finally {
       setLoad(false)
     }

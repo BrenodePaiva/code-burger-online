@@ -16,7 +16,7 @@ import {
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export function SideMenuAdmin({ path }) {
-  const { logout } = useUser()
+  const { logout, userData } = useUser()
   const [mobile, setMobile] = useState(false)
   const history = useHistory()
 
@@ -40,7 +40,7 @@ export function SideMenuAdmin({ path }) {
         <UserBox onClick={() => history.push('/user-edit')}>
           <UserIconStyled />
           <UserInfo>
-            Breno de paica da silva
+            {userData.name}
             <span>Admin</span>
           </UserInfo>
         </UserBox>

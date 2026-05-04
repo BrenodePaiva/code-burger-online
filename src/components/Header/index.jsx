@@ -122,7 +122,7 @@ export function Header() {
           <UserInfoBox>
             <AccountCircleIcon fontSize="large" />
             <div>
-              <p>nome paiva</p> <span>brenopaiva552@gmail.com</span>
+              <p>{userData.name}</p> <span>{userData.email}</span>
             </div>
           </UserInfoBox>
 

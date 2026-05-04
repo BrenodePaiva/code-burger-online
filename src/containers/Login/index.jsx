@@ -11,12 +11,22 @@ import Logo from '../../assets/logo.svg'
 import { Button, ErrorMessage, LoadScreen } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import api from '../../services/api'
-import { Container, ContainerItens, Label, Input, SignInLink } from './styles'
+import {
+  Container,
+  ContainerItens,
+  Label,
+  Input,
+  SignInLink,
+  LoadingContainer,
+  ProgressBar,
+  Progress
+} from './styles'
 
 export function Login() {
   const history = useHistory()
   const { putUserData, userData } = useUser()
   const [load, setLoad] = useState(false)
+  const [loadingApi, setLoadingApi] = useState(true)
 
   const schema = Yup.object().shape({
     email: Yup.string()
@@ -70,6 +80,12 @@ export function Login() {
   }
 
   useEffect(() => {
+    fetch(`${api.defaults.baseURL}/health`)
+      .then(() => setLoadingApi(false))
+      .catch(() => setLoadingApi(false))
+
+    console.log(api.defaults.baseURL)
+
     const params = new URLSearchParams(window.location.search)
     const error = params?.get('error')
 
@@ -91,6 +107,20 @@ export function Login() {
       window.history.pushState({}, '', '/erro-login')
     }
   }, [])
+
+  if (loadingApi) {
+    return (
+      <Container>
+        <LoadingContainer>
+          <h2>🔄 Iniciando servidor...</h2>
+          <ProgressBar>
+            <Progress />
+          </ProgressBar>
+          <p>Aguarde alguns segundos</p>
+        </LoadingContainer>
+      </Container>
+    )
+  }
 
   return (
     <Container>

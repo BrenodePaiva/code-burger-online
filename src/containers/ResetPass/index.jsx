@@ -37,7 +37,7 @@ export function ResetPass() {
     try {
       setLoad(true)
       await toast.promise(
-        api.post(`resetPassword/${token}`, {
+        api.post(`reset-password/${token}`, {
           password: formData.password
         }),
         {

@@ -32,14 +32,13 @@ const load = keyframes`
   0% { width: 0; }
   50% { width: 80%; }
   100% { width: 100%; }
-}
 `
 
 export const Progress = styled.div`
   height: 100%;
   width: 0;
   background-color: #007bff;
-  animation: ${load} 3s linear infinite;
+  animation: ${load} 43.037s linear infinite;
 `
 
 export const Container = styled.div`

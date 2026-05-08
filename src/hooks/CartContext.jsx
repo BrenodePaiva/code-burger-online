@@ -17,6 +17,7 @@ export const CartProvider = ({ children }) => {
 
   const cleanCart = async () => {
     await localStorage.removeItem('codeburger:cartProduct')
+    setCartProducts([])
   }
 
   const putProductInCart = async cartItens => {

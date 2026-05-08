@@ -16,9 +16,12 @@ export function Home() {
       .catch(() => setLoadingApi(false))
   }, [])
 
-  if (loadingApi) {
-    history.replace('/login')
-  }
+  setTimeout(() => {
+    if (loadingApi) {
+      history.replace('/login')
+    }
+  }, 600)
+
   return (
     <Container>
       <HomeImg src={HomeLogo} alt="logo-home" />

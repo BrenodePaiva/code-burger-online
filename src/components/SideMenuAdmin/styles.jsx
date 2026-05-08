@@ -9,9 +9,10 @@ export const Container = styled.div`
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
   width: 230px;
   min-height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  overflow-y: auto;
   transition: width 0.5s ease-in-out;
 
   hr {

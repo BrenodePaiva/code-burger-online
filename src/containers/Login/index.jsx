@@ -84,8 +84,6 @@ export function Login() {
       .then(() => setLoadingApi(false))
       .catch(() => setLoadingApi(false))
 
-    console.log(api.defaults.baseURL)
-
     const params = new URLSearchParams(window.location.search)
     const error = params?.get('error')
 

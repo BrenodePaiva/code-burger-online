@@ -13,14 +13,8 @@ export function Home() {
   useEffect(() => {
     fetch(`${api.defaults.baseURL}/health`)
       .then(() => setLoadingApi(false))
-      .catch(() => setLoadingApi(false))
-  }, [])
-
-  setTimeout(() => {
-    if (loadingApi) {
-      history.replace('/login')
-    }
-  }, 600)
+      .catch(() => history.replace('/login'))
+  }, [history])
 
   return (
     <Container>

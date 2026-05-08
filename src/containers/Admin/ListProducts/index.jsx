@@ -13,18 +13,22 @@ import { useHistory } from 'react-router-dom'
 import paths from '../../../constants/paths'
 import api from '../../../services/api'
 import formatCurrency from '../../../utils/formatCurrency'
-import { Container, EditIconStyles, Img } from './styles'
+import { Container, DeleteIconStyles, EditIconStyles, Img } from './styles'
+import { LoadScreen } from '../../../components'
+import { toast } from 'react-toastify'
 
 function ListProducts() {
   const [products, setProducts] = useState()
+  const [load, setLoad] = useState(false)
   const { push } = useHistory()
 
-  useEffect(() => {
-    async function loadProducts() {
-      const { data } = await api.get('products')
+  async function loadProducts() {
+    const { data } = await api.get('products')
 
-      setProducts(data)
-    }
+    setProducts(data)
+  }
+
+  useEffect(() => {
     loadProducts()
   }, [])
 
@@ -39,8 +43,23 @@ function ListProducts() {
     push({ pathname: paths.EditProduct, state: { product } })
   }
 
+  async function deleteProduct(id) {
+    try {
+      setLoad(true)
+      await toast.promise(api.delete(`products/${id}`), {
+        pending: 'Excluindo produto...',
+        success: 'Produto excluído com sucesso',
+        error: 'Falha ao excluir o produto'
+      })
+      await loadProducts()
+    } finally {
+      setLoad(false)
+    }
+  }
+
   return (
     <Container>
+      {load && <LoadScreen />}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -69,6 +88,9 @@ function ListProducts() {
                   </TableCell>
                   <TableCell>
                     <EditIconStyles onClick={() => editProduct(product)} />
+                    <DeleteIconStyles
+                      onClick={() => deleteProduct(product.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

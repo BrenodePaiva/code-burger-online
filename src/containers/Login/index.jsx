@@ -21,6 +21,7 @@ import {
   ProgressBar,
   Progress
 } from './styles'
+import { LoadServer } from '../../components/LoadServer'
 
 export function Login() {
   const history = useHistory()
@@ -107,17 +108,7 @@ export function Login() {
   }, [])
 
   if (loadingApi) {
-    return (
-      <Container>
-        <LoadingContainer>
-          <h2>🔄 Iniciando servidor...</h2>
-          <ProgressBar>
-            <Progress />
-          </ProgressBar>
-          <p>Aguarde alguns segundos</p>
-        </LoadingContainer>
-      </Container>
-    )
+    return <LoadServer />
   }
 
   return (

@@ -4,16 +4,20 @@ import HomeLogo from '../../assets/home-logo.svg'
 import { CategoryCarrousel, OffersCarrousel } from '../../components'
 import { Container, HomeImg } from './styles'
 import api from '../../services/api'
-import { useHistory } from 'react-router-dom'
+import { LoadServer } from '../../components/LoadServer'
 
 export function Home() {
-  const history = useHistory()
+  const [loadingApi, setLoadingApi] = useState(true)
 
   useEffect(() => {
-    fetch(`${api.defaults.baseURL}/health`).catch(() => {
-      history.replace('/login')
-    })
-  }, [history])
+    fetch(`${api.defaults.baseURL}/health`)
+      .then(() => setLoadingApi(false))
+      .catch(() => setLoadingApi(false))
+  }, [])
+
+  if (loadingApi) {
+    return <LoadServer />
+  }
 
   return (
     <Container>

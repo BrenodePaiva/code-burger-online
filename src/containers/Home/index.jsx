@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import HomeLogo from '../../assets/home-logo.svg'
 import { CategoryCarrousel, OffersCarrousel } from '../../components'
-import { Container, HomeImg } from './styles'
+import { Container, ContainerServer, HomeImg } from './styles'
 import api from '../../services/api'
 import { LoadServer } from '../../components/LoadServer'
 
@@ -16,7 +16,11 @@ export function Home() {
   }, [])
 
   if (loadingApi) {
-    return <LoadServer />
+    return (
+      <ContainerServer>
+        <LoadServer />
+      </ContainerServer>
+    )
   }
 
   return (

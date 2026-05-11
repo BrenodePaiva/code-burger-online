@@ -7,13 +7,12 @@ import api from '../../services/api'
 import { useHistory } from 'react-router-dom'
 
 export function Home() {
-  const [loadingApi, setLoadingApi] = useState(true)
   const history = useHistory()
 
   useEffect(() => {
-    fetch(`${api.defaults.baseURL}/health`)
-      .then(() => setLoadingApi(false))
-      .catch(() => history.replace('/login'))
+    fetch(`${api.defaults.baseURL}/health`).catch(() => {
+      history.replace('/login')
+    })
   }, [history])
 
   return (

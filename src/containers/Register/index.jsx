@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -38,20 +38,28 @@ export function Register() {
 
   const onSubmit = async clientData => {
     try {
-      const { status } = await api.post(
-        'users',
+      const { status } = await toast.promise(
+        api.post(
+          'users',
+          {
+            name: clientData.name,
+            email: clientData.email,
+            password: clientData.password
+          },
+          {
+            validateStatus: () => true
+          }
+        ),
         {
-          name: clientData.name,
-          email: clientData.email,
-          password: clientData.password
-        },
-        {
-          validateStatus: () => true
+          pending: 'Verificando dados...',
+          success: 'Cadastrado com sucesso',
+          error: 'Falha no sistema'
         }
       )
-
       if (status === 201 || status === 200) {
-        toast.success('Cadastrado com sucesso')
+        setTimeout(() => {
+          history.replace('/login')
+        }, 300)
       } else if (status === 409) {
         toast.error('E-mail já cadastrado')
       } else {
@@ -66,7 +74,7 @@ export function Register() {
     if (userData.token) {
       history.push('/')
     }
-  }, [])
+  }, [userData, history])
 
   return (
     <Container>

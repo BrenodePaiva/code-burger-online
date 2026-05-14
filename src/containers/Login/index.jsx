@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import GoogleIcon from '@mui/icons-material/Google'
-import { useGoogleLogin } from '@react-oauth/google'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
@@ -17,9 +16,7 @@ import {
   Label,
   Input,
   SignInLink,
-  LoadingContainer,
-  ProgressBar,
-  Progress
+  AccountDemo
 } from './styles'
 import { LoadServer } from '../../components/LoadServer'
 
@@ -114,7 +111,13 @@ export function Login() {
   return (
     <Container>
       {load && <LoadScreen />}
-      <div className="image"></div>
+      <div className="image">
+        <AccountDemo>
+          <p>Administrador:</p>
+          <p>E-mail: admin@demo.com</p>
+          <p>Senha: 12345678</p>
+        </AccountDemo>
+      </div>
 
       <ContainerItens>
         <img src={Logo} alt="logo-code-burger" />

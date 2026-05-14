@@ -14,6 +14,7 @@ export const Container = styled.div`
   align-items: center;
 
   .image {
+    padding-left: 14px;
     height: 88%;
     width: 464.266px;
     background-image: url('${LoginImg}');
@@ -96,4 +97,12 @@ export const SignInLink = styled.div`
   font-weight: 300;
   line-height: 16px;
   margin-bottom: 4px;
+`
+
+export const AccountDemo = styled.div`
+  color: rgba(209, 213, 219, 1);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  margin-top: 10px;
 `

@@ -52,11 +52,11 @@ export function Register() {
         ),
         {
           pending: 'Verificando dados...',
-          success: 'Cadastrado com sucesso',
           error: 'Falha no sistema'
         }
       )
       if (status === 201 || status === 200) {
+        toast.success('Cadastrado com sucesso')
         setTimeout(() => {
           history.replace('/login')
         }, 300)

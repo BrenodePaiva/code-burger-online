@@ -114,8 +114,10 @@ export function Login() {
       <div className="image">
         <AccountDemo>
           <p>Administrador:</p>
-          <p>E-mail: admin@demo.com</p>
-          <p>Senha: 12345678</p>
+          <p>
+            Para acessar como administrador, entre em contato:
+            brenopaiva552@gmail.com
+          </p>
         </AccountDemo>
       </div>
 
